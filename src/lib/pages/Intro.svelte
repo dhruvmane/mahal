@@ -39,7 +39,7 @@
     
     <!-- Logo -->
     <!-- Title / Slogan / Logo -->
-    <div class="mt-30 flex flex-col justify-self-center w-4xl text-center p-10">
+    <div class="mt-20 flex flex-col justify-self-center w-4xl text-center p-10">
         <div class="ml-20 text-9xl">
             <Logo LogoSize=32 LogoTranslateY=2.5/>
         </div>
