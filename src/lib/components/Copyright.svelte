@@ -1,0 +1,1 @@
+<p class="text-gray-800">Copyright © 2026 dhruv mane. All Rights Reserved.</p>
