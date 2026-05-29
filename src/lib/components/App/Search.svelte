@@ -1,7 +1,7 @@
 <script lang=ts>
     import Search from '$lib/assets/icons/search.svg'
-    import { PLAYLISTS } from './globals.svelte';
-    import type { PlaylistsInterface, Song, Podcast } from './globals.svelte';
+    import { PLAYLISTS } from '../../modules/globals.svelte';
+    import type { PlaylistsInterface, Song, Podcast } from '../../modules/globals.svelte';
     import Fuse from 'fuse.js'    
 
     import Details from './Search/Details.svelte';

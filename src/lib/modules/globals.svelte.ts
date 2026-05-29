@@ -35,14 +35,15 @@ interface App {
 }
 
 // DUMMY DATA
-let PLAYLISTS: PlaylistsInterface[] = [
-        {id:"1", cover:"", title:"My love for Armpits is Very Very Real.", subtitle:"created by Me.", isPinned: true},
+let PLAYLISTS: PlaylistsInterface[] = $state([
+        {id:"1", cover:"", title:"My love", subtitle:"created by Me.", isPinned: true},
         {cover:"", title:"Beautiful bollywood Songs", subtitle:"created by Me."},
         {cover:"", title:"Podcasts And Recordings", subtitle:"created by Me."},
         {cover:"", title:"My Wife's Lullabies.", subtitle:"created by Me."},
-]
-let RECENTLY_PLAYED: Song[] = []
-let SONGS: Song[] = []
+])
+
+let RECENTLY_PLAYED: Song[] = $state([])
+let SONGS: Song[] = $state([])
 
 
 let UI_CONFIG = $state({
@@ -60,7 +61,10 @@ let UI_CONFIG = $state({
         PLAYING_SONG_ID: ""
 })
 
+function setUIState(state: string) {
+        UI_CONFIG.MIDDLE_WINDOW_STATE = state;
+}
 
 // Export Structs and Data
 export type { PlaylistsInterface, Song, App, Podcast }
-export { PLAYLISTS, RECENTLY_PLAYED, UI_CONFIG }
+export { PLAYLISTS, RECENTLY_PLAYED, UI_CONFIG, setUIState }

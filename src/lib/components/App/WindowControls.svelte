@@ -1,17 +1,16 @@
 <script lang="ts">
-  import { getCurrentWindow } from "@tauri-apps/api/window";
-
-  const appWindow = getCurrentWindow();
+  // import { getCurrentWindow } from "@tauri-apps/api/window";
+  // const appWindow = getCurrentWindow();
 </script>
 
 <div
   data-tauri-drag-region
   class="flex items-center w-full top-0 bg-zinc-950 border-b border-zinc-800 h-10 z-[10000] select-none"
 >
-  <!-- LEFT: App title or icon -->
+    <!-- LEFT: App title or icon -->
   <div data-tauri-drag-region class="flex items-center gap-2 px-4 flex-1">
-    <span data-tauri-drag-region class="text-zinc-400 text-xs font-medium tracking-widest uppercase">
-      MAHAL - A Spotify-esque client
+    <span data-tauri-drag-region class="text-zinc-400 text-xs font-small tracking-widest">
+      Mahal
     </span>
   </div>
 

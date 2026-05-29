@@ -1,6 +1,6 @@
 <script lang=ts>
 
-    import Search from '$lib/components/App/Search.svelte'
+    import placeholder from '$lib/assets/placeholder/playlist/1.jpg'
 
     import PlaylistAlbum from '$lib/components/App/Playlist/Album.svelte'
     import PlaylistCard from '$lib/components/App/Playlist/Card.svelte'
@@ -14,7 +14,7 @@
     import gsap from 'gsap'
     import { onMount } from 'svelte';
     import ToggleDisplay from '../Playlist/ToggleDisplay.svelte';
-    import { PLAYLISTS, RECENTLY_PLAYED, UI_CONFIG } from '../globals.svelte'
+    import { PLAYLISTS, RECENTLY_PLAYED, UI_CONFIG } from '../../../modules/globals.svelte'
 
 
     const colsMap: Record<number, string> = {
@@ -129,7 +129,33 @@
 {/if}
 
 {#if UI_CONFIG.MIDDLE_WINDOW_STATE === "PLAYLIST"}
-    
+    <div class="m-10 justify-items-center">
+        <main class="flex w-[750px] border-b p-5 border-neutral-700">
+                <!-- PLAYLIST IMAGE -->
+                <div class="mr-10 h-[220px] w-[220px] bg-neutral-950">
+                    <img src={placeholder} alt="playlist">
+                </div>
+
+                <!-- Information -->
+                <div class="w-[500px] h-[200px] pt-15 contain-inline-size">
+                    <h1 class="text-white text-6xl mb-5 font-bold overflow-x-clip">My Playlist #1</h1>
+                    <p class="text-neutral-700 p-1">created by me. created by me.</p>
+                </div>
+        </main>
+        <main class="mt-2 w-[750px] h-[35px]">
+            <!-- Playlist Song Info -->
+            <div class="flex w-[750px] h-[35px]">
+            </div>
+
+            <!-- Playlists -->
+            <div>
+                <div class="mt-2.5 flex w-[750px] h-[50px] hover:bg-neutral-800 transition duration-100 bg-neutral-900 rounded"></div>
+                <div class="mt-2.5 flex w-[750px] h-[50px] hover:bg-neutral-800 transition duration-100 bg-neutral-900 rounded"></div>
+                <div class="mt-2.5 flex w-[750px] h-[50px] hover:bg-neutral-800 transition duration-100 bg-neutral-900 rounded"></div>
+            </div>
+
+        </main>
+    </div>
 {/if}
 
 </div>

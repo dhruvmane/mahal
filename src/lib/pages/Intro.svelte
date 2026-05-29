@@ -29,9 +29,20 @@
         goto(`${route}`)
     }
 
+    let innerWidth = $state(0);
+	let innerHeight = $state(0);
+
+	// Base dimensions you designed your app for (e.g., 1920x1080)
+	const baseWidth = 1920;
+	
+	// Calculate the scale ratio
+	const scaleRatio = $derived(innerWidth / baseWidth);
+
 </script>
 
-<div bind:this={page} class="text-white overflow-y-hidden">
+<svelte:window bind:innerWidth bind:innerHeight />
+
+<div bind:this={page} class="text-white overflow-y-hidden h-screen w-screen">
     <!-- Title of the Web Page -->
     <title>Mahal</title>
 
@@ -39,7 +50,7 @@
     
     <!-- Logo -->
     <!-- Title / Slogan / Logo -->
-    <div class="mt-20 flex flex-col justify-self-center w-4xl text-center p-10">
+    <div class="mt-10 flex flex-col justify-self-center w-4xl text-center p-10">
         <div class="ml-20 text-9xl">
             <Logo LogoSize=32 LogoTranslateY=2.5/>
         </div>

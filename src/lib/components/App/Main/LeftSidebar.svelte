@@ -1,18 +1,18 @@
 <script lang=ts>
     
-    import { UI_CONFIG } from '../globals.svelte.js'
-    import { onMount } from 'svelte'
+    import { UI_CONFIG } from '../../../modules/globals.svelte.js'
+    import { onMount, untrack } from 'svelte'
     import Lenis from 'lenis';
     import Fuse from 'fuse.js';
 
-    import createPlaylist from '../../../modules/create/playlist.js'    
+    import createPlaylist from '../../../modules/create/playlist.ts'    
 
     import Create from '$lib/assets/icons/plus.svg'
     import Search from '$lib/assets/icons/search.svg'
     import Filter from '$lib/assets/icons/filter.svg'
 
-    import { PLAYLISTS } from '../globals.svelte.js'
-    import type { PlaylistsInterface } from '../globals.svelte.js';
+    import { PLAYLISTS } from '../../../modules/globals.svelte.js'
+    import type { PlaylistsInterface } from '../../../modules/globals.svelte.js';
 
     import Playlist from '../Playlist/LeftSidebar.svelte';
 
@@ -57,25 +57,14 @@
             SORTED_LIST = []
         }
     }
-
-    let ALL_PLAYLISTS: PlaylistsInterface[] = PLAYLISTS;
-    let PINNED_PLAYLISTS: PlaylistsInterface[] = [];
-    let REST_PLAYLISTS: PlaylistsInterface[] = [];
-
-    for (const playlistIndex in ALL_PLAYLISTS) {
-        if (ALL_PLAYLISTS[playlistIndex].isPinned == true) {
-            PINNED_PLAYLISTS.push(ALL_PLAYLISTS[playlistIndex])
-        } else {
-            REST_PLAYLISTS.push(ALL_PLAYLISTS[playlistIndex])            
-        }
-    }
-
+    let PINNED_PLAYLISTS: PlaylistsInterface[] = $derived(PLAYLISTS.filter(p => p.isPinned));
+    let REST_PLAYLISTS: PlaylistsInterface[] = $derived(PLAYLISTS.filter(p => !p.isPinned));
 
 </script>
 
 <div class="hidden 2xl:flex flex-col justify-start w-120 bg-black transition duration-500 ease-in-out">
 
-<div class="bg-neutral-950 ml-4 mr-4 rounded-2xl h-[calc(100%-10%)]">
+<div class="bg-neutral-950 ml-4 mr-4 rounded-2xl h-[90%]">
     <div class="flex text-white text-2xl mt-5 w-full h-12">
         <!-- "YOUR LIBRARY                [+ CREATE] " -->
         <h1 class="ml-5 undeline underline-offset-4 w-full text-neutral-500">Your Library</h1>

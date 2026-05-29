@@ -1,4 +1,6 @@
 <script lang=ts>
+
+    import WindowControls from '$lib/components/App/WindowControls.svelte';
     import App from '$lib/pages/App.svelte'
     import { onMount } from "svelte";
 
@@ -11,6 +13,8 @@
     })
 
 </script>
+
+<WindowControls  />
 <div bind:this={Page}>
     <App />
 </div>

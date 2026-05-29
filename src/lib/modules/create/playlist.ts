@@ -1,4 +1,4 @@
-import { UI_CONFIG, PLAYLISTS } from "$lib/components/App/globals.svelte";
+import { UI_CONFIG, PLAYLISTS } from "$lib/modules/globals.svelte";
 
 function createPlaylist() {
     // Increment Count

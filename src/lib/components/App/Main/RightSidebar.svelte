@@ -1,5 +1,5 @@
 <script>
-  import { UI_CONFIG } from "../globals.svelte";
+  import { UI_CONFIG } from "../../../modules/globals.svelte";
 
 </script>
 

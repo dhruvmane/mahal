@@ -1,6 +1,6 @@
 <script lang=ts>
 
-    import { UI_CONFIG } from './globals.svelte'
+    import { UI_CONFIG } from '../../modules/globals.svelte'
 
     // Import Icons
     import Reverse from '$lib/assets/icons/reverse-forward.svg'

@@ -1,5 +1,5 @@
 <script>
-    import { UI_CONFIG } from '../globals.svelte';
+    import { UI_CONFIG, setUIState } from '../../../modules/globals.svelte.ts';
     let { playlist_details = undefined } = $props()
     
     // Import placeholder Images (for testing)
@@ -21,14 +21,9 @@
         cover = placeholder_1
     }
         
-    function setState() {
-        const _state = "PLAYLIST"
-        // Set State Globally
-        UI_CONFIG.MIDDLE_WINDOW_STATE = _state
-    }
 </script>
 
-<button class="hover:cursor-pointer" onclick={setState}>
+<button class="hover:cursor-pointer" onclick={() => {setUIState("PLAYLIST")}}>
     <div class="overflow-hidden rounded-2xl h-[calc(100% + 10%)] w-full bg-mahal-playlist-bg border border-mahal-border-color shadow-xl backdrop-blur-xl hover:bg-white/30 transition duration-300 ease-in-out">
         <img class="" src={cover} alt="title">
         <div class="m-3 text-center">
