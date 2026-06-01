@@ -12,5 +12,5 @@
 <div class="flex w-full h-screen">
     <LeftSidebar />
     <Middle />
-    <RightSidebar />
+    <!-- <RightSidebar /> -->
 </div>

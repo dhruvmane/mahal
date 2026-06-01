@@ -10,15 +10,13 @@
     let id = playlist_details.id
 
     if (cover == "") {
-        const randomValue = Math.floor(Math.random() * 6);
-        // cover = placeholders[randomValue]
         cover = placeholder_1
     }
 
 </script>
 
 
-<button class="hover:cursor-pointer" onclick={() => {setUIState("PLAYLIST")}}>
+<button class="hover:cursor-pointer" onclick={() => {setUIState("PLAYLIST", id)}}>
     <div class="rounded-2xl mt-2 md-2 gap-1 gap-x-10 h-12.5 min-w-43 bg-white/5 border border-white/10 shadow-xl backdrop-blur-xl hover:bg-white/30 transition duration-300 ease-in-out">
         <div class="flex overflow-hidden">
             <img class="ml-4 mt-1.5 size-9 rounded" src={cover} alt="cover">

@@ -14,7 +14,7 @@
     import gsap from 'gsap'
     import { onMount } from 'svelte';
     import ToggleDisplay from '../Playlist/ToggleDisplay.svelte';
-    import { PLAYLISTS, RECENTLY_PLAYED, UI_CONFIG } from '../../../modules/globals.svelte'
+    import { PLAYLISTS, RECENTLY_PLAYED, UI_CONFIG, setDisplayStyle, type PlaylistsInterface } from '../../../modules/globals.svelte'
 
 
     const colsMap: Record<number, string> = {
@@ -32,9 +32,10 @@
     let recentlyPlayedSectionColumns: number = $state(6);
     let recentlyPlayedStringClass = $derived(colsMap[recentlyPlayedSectionColumns])
     
-    let playlistDisplayStyle = $state('ALBUM')
+    let playlistDisplayStyle = $state(UI_CONFIG.playlistDisplayStyle)
     function setPlaylistDisplayStyle(style: string) {
         playlistDisplayStyle = style
+        setDisplayStyle(style)
         if (style === 'BARS') playlistSectionColumns = 3
         if (style === 'ALBUM') playlistSectionColumns = 6
         if (style === 'CARD') playlistSectionColumns = 5
@@ -66,6 +67,12 @@
             gsap.fromTo(recentlyPlayedSection!, {opacity: 0}, {opacity: 1, duration: 1})
         }
         console.log('Changed Recently Played Display Style')
+    })
+
+    let _PLAYLIST_WINDOW: PlaylistsInterface | undefined = $state({cover: "", subtitle: "", title: "", id: "", songs: []})
+    $effect(() => {
+        // Data about the playlist opened in the window.
+        _PLAYLIST_WINDOW = PLAYLISTS.find(item => item.id === UI_CONFIG.SELECTED_PLAYLIST_ID)
     })
 
     // Lenis for Scrolling in Middle Area
@@ -128,18 +135,18 @@
 
 {/if}
 
+<!-- UI_CONFIG.SELECTED_PLAYLIST_ID -->
 {#if UI_CONFIG.MIDDLE_WINDOW_STATE === "PLAYLIST"}
     <div class="m-10 justify-items-center">
         <main class="flex w-[750px] border-b p-5 border-neutral-700">
                 <!-- PLAYLIST IMAGE -->
-                <div class="mr-10 h-[220px] w-[220px] bg-neutral-950">
+                <div class="mr-10 size-[220px] bg-neutral-950">
                     <img src={placeholder} alt="playlist">
                 </div>
 
                 <!-- Information -->
-                <div class="w-[500px] h-[200px] pt-15 contain-inline-size">
-                    <h1 class="text-white text-6xl mb-5 font-bold overflow-x-clip">My Playlist #1</h1>
-                    <p class="text-neutral-700 p-1">created by me. created by me.</p>
+                <div class="w-[500px] h-[200px] contain-inline-size">
+                    <h1 class="text-white text-6xl mb-5 font-bold overflow-x-clip">{_PLAYLIST_WINDOW?.title}</h1>
                 </div>
         </main>
         <main class="mt-2 w-[750px] h-[35px]">
@@ -149,11 +156,10 @@
 
             <!-- Playlists -->
             <div>
-                <div class="mt-2.5 flex w-[750px] h-[50px] hover:bg-neutral-800 transition duration-100 bg-neutral-900 rounded"></div>
-                <div class="mt-2.5 flex w-[750px] h-[50px] hover:bg-neutral-800 transition duration-100 bg-neutral-900 rounded"></div>
-                <div class="mt-2.5 flex w-[750px] h-[50px] hover:bg-neutral-800 transition duration-100 bg-neutral-900 rounded"></div>
+                {#each _PLAYLIST_WINDOW?.songs as Song}
+                    <div class="mt-2.5 flex w-[750px] h-[50px] hover:bg-neutral-800 transition duration-100 bg-neutral-900 rounded"></div>
+                {/each}
             </div>
-
         </main>
     </div>
 {/if}
