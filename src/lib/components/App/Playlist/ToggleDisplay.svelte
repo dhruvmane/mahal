@@ -12,7 +12,7 @@
 
 </script>
 
-<div class="flex justify-end w-full box-border translate-y-0.5">
+<div class="hidden md:flex justify-end w-full box-border translate-y-0.5">
     <div class="h-full flex justify-end">
         <button onclick={() => {setState('ALBUM'); setDisplayStyle('ALBUM')}} class="size-7 ml-3 bg-none">
             {#if toggledState === 'ALBUM'}

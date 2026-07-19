@@ -57,13 +57,13 @@
             <Logo LogoSize=32 LogoTranslateY=2.5/>
         </div>
         <LogoCredit />
-        <p class="mt-15 text-[20px] w-220">a <span class="text-green-400">Spotify-esque</span> client, specifically for locally installed audio. Create playlists, curate experiences and personalize your auditory adventure!</p>    
+        <p class="mt-15 text-[20px] w-220">a <span class="text-mahal-maintheme">Spotify-esque</span> client, specifically for locally installed audio. Create playlists, curate experiences and personalize your auditory adventure!</p>    
     </div>
 
     <!-- Buttons -->
-    <div class="flex justify-self-center mt-15">
-        <button class="transition-all p-4 bg-gray-600 hover:bg-gray-400 hover:text-gray-950 font-extrabold min-w-50 hover:cursor-pointer hover:scale-102" onclick={navigate('/app')} >GET STARTED</button>
-        <button class="transition-all p-4 bg-gray-600 hover:bg-gray-400 hover:text-gray-950 font-extrabold min-w-50 hover:cursor-pointer hover:scale-102" onclick={navigate('/discover-themes')} >DISCOVER THEMES</button>
+    <div class="flex justify-self-center mt-15 gap-1">
+        <button class="transition-all p-4 bg-neutral-900 border border-neutral-800 hover:bg-mahal-maintheme hover:text-neutral-950 font-extrabold min-w-50 hover:cursor-pointer hover:scale-102" onclick={navigate('/app')} >GET STARTED</button>
+        <button class="transition-all p-4 bg-neutral-900 border border-neutral-800 hover:bg-mahal-maintheme hover:text-neutral-950 font-extrabold min-w-50 hover:cursor-pointer hover:scale-102" onclick={navigate('/discover-themes')} >DISCOVER THEMES</button>
     </div>
 
     <!-- Links -->
@@ -83,13 +83,5 @@
     /* @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');  */
     /* @import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap'); */
     /* @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&display=swap'); */
-
-    p {
-        font-family: 'Google Sans Code';
-    }
-
-    button {
-        font-family: 'Space Mono';
-    }
 
 </style>

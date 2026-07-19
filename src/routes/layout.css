@@ -2,8 +2,36 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+
+@theme {
+    --breakpoint-mahalmd: 60rem;
+
+    --color-mahal-playlist-title: white;
+    --color-mahal-playlist-bg: color-mix(in oklab, var(--color-white) /* #fff = #ffffff */ 5%, transparent);
+    --color-mahal-border-color: color-mix(in oklab, var(--color-white) /* #fff = #ffffff */ 10%, transparent);
+
+    --color-mahal-maintheme: #FCB55D;
+
+    --font-mahal-h1: 'Kindly Rewind';
+    --font-mahal-p: 'VCR OSD MONO';
+
+}
+
+
+h1 {
+    font-family: var(--font-mahal-h1);
+}
+
+p, button, a {
+    font-family: var(--font-mahal-p);
+}
+
 * {
     box-sizing: border-box;
+}
+
+button {
+    @apply hover:cursor-pointer; 
 }
 
 html, body {
@@ -13,6 +41,12 @@ html, body {
     height: 100%;
     width: 100%;
     overflow: hidden;
+}
+
+
+@font-face {
+    font-family: 'Instrument Serif';
+    src: url('$lib/fonts/InstrumentSerif-Regular.ttf');
 }
 
 @font-face {
@@ -36,11 +70,12 @@ html, body {
     src: local('Space Mono'), url('$lib/fonts/Space-Mono.woff2') format('woff2');
 }
 
-@theme {
-    --breakpoint-mahalmd: 60rem;
+@font-face {
+    font-family: 'Kindly Rewind';
+    src: url('$lib/fonts/KindlyRewind-BOon.ttf');
+}
 
-    --color-mahal-playlist-title: white;
-    --color-mahal-playlist-bg: color-mix(in oklab, var(--color-white) /* #fff = #ffffff */ 5%, transparent);
-    --color-mahal-border-color: color-mix(in oklab, var(--color-white) /* #fff = #ffffff */ 10%, transparent);
-
+@font-face {
+    font-family: 'VCR OSD MONO';
+    src: url('$lib/fonts/VCR_OSD_MONO_1.001.ttf');
 }

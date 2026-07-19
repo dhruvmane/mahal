@@ -56,7 +56,7 @@
             <img class="invert size-5 translate-y-1" src={Link} alt="LinkSVG">
         </div>
         <div class="flex space-x-1  hover:underline">
-            <a class="accent-gray-500 text-[18px]" href="#">Donate</a>
+            <a class="accent-gray-500 text-[18px]" href="/donate">Donate</a>
             <img class="invert size-5 translate-y-1" src={Link} alt="LinkSVG">
         </div>
     </div>
@@ -75,7 +75,7 @@
             <img class="invert size-5 translate-y-1" src={Link} alt="LinkSVG">
         </div>
         <div class="flex space-x-1  hover:underline">
-            <a class="accent-gray-500 text-[18px]" href="#">Donate</a>
+            <a class="accent-gray-500 text-[18px]" href="donate">Donate</a>
             <img class="invert size-5 translate-y-1" src={Link} alt="LinkSVG">
         </div>
     </div>

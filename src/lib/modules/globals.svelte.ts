@@ -63,7 +63,9 @@ let UI_CONFIG = $state({
         PLAYING_SONG_ID: "",
 
         isSearching: false,
-        SEARCH_QUERY: ""
+        SEARCH_QUERY: "",
+
+        WINDOW_TITLE: "MAHAL"
 })
 
 function setUIState(state: string, id: string) {

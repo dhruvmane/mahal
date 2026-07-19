@@ -5,7 +5,7 @@
     import AppPlatform from '$lib/components/App/Platform.svelte'
     import Player from '$lib/components/App/Player.svelte'
 </script>
-<div>
+<div class="w-screen h-screen">
     <AppNav />
     <AppPlatform />
     <Player />

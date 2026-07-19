@@ -7,9 +7,11 @@
 
     import createPlaylist from '../../../modules/create/playlist.ts'    
 
+    // Import Icons
     import Create from '$lib/assets/icons/plus.svg'
     import Search from '$lib/assets/icons/search.svg'
     import Filter from '$lib/assets/icons/filter.svg'
+    import Pinned from "$lib/assets/icons/pinned.svg"
 
     import { PLAYLISTS } from '../../../modules/globals.svelte.js'
     import type { PlaylistsInterface } from '../../../modules/globals.svelte.js';
@@ -19,6 +21,7 @@
     // Left Sidebar Playlist Search/Sort by Title.
     let searchBarRef: HTMLInputElement
     let isSearching = $state(false)
+    let searchQuery = $state("")
 
     let playlistSection: HTMLElement;
     
@@ -28,92 +31,87 @@
 
     let SORTED_LIST: PlaylistsInterface[] = $state([])
 
-    function fuzzySearch() {
-        if (searchBarRef.value !== "") {
-            
-            let query: string = searchBarRef.value
-            
-            // Disable Default Lists.
-            isSearching = true
+    const searchLeftSidebarfuse = new Fuse(PLAYLISTS, {
+        keys: ['title', 'subtitle']
+    })
 
-            let _playlists = PLAYLISTS
-
-            const fuse = new Fuse(_playlists, {
-                keys: ['title', 'subtitle']
-            })
-
-            let _SORTED_LIST: PlaylistsInterface[] = fuse.search(query).map(result => result.item)
-
-            SORTED_LIST = _SORTED_LIST
-            console.log(`Fuzzy Searching for Text: ${fuse}`)
-
-            // "UNPIN the Playlist."
-            for (let i in SORTED_LIST) {
-                SORTED_LIST[i].isPinned = false
-            }
-
-        } else {
-            isSearching = false
-            SORTED_LIST = []
-        }
+    function fuzzySearch(searchQuery: string) {
+        let query: string = searchQuery
+        SORTED_LIST = searchLeftSidebarfuse.search(query).map(result => result.item)
+        console.log(`Fuzzy Searching for Text: ${query}`)
     }
+
     let PINNED_PLAYLISTS: PlaylistsInterface[] = $derived(PLAYLISTS.filter(p => p.isPinned));
     let REST_PLAYLISTS: PlaylistsInterface[] = $derived(PLAYLISTS.filter(p => !p.isPinned));
 
+    $effect(() => {
+        if (searchQuery === "") {
+            isSearching = false
+            SORTED_LIST = []
+        } else {
+            fuzzySearch(searchQuery)
+            // Disable Default Lists.
+            isSearching = true
+        }
+    })
+
+
 </script>
 
-<div class="hidden 2xl:flex flex-col justify-start w-120 bg-black transition duration-500 ease-in-out">
+<div class="hidden 2xl:flex flex-col justify-start w-90 bg-black transition duration-500 ease-in-out">
 
-<div class="bg-neutral-950 ml-4 mr-4 rounded-2xl h-[90%]">
-    <div class="flex text-white text-2xl mt-5 w-full h-12">
+<div class="bg-neutral-950 mx-4 py-2 px-4 rounded-2xl h-[90%]">
+    <div class="flex text-white text-2xl w-full h-12 items-center">
         <!-- "YOUR LIBRARY                [+ CREATE] " -->
-        <h1 class="ml-5 undeline underline-offset-4 w-full text-neutral-500">Your Library</h1>
-        <button onclick={createPlaylist} class="mr-3 hover:cursor-pointer bg-neutral-800 hover:border-neutral-500 transition duration-300 ease-in-out box-border flex justify-end rounded-[1000px] border-2 border-transparent pl-10 pr-5 -translate-y-1 scale-80">
-            <img class="m-1.5 invert-60 size-8" src={Create} alt="createIcon">
-            <h1 class="m-1 hover:cursor-pointer text-neutral-500">Create</h1>
+        <h1 class="undeline underline-offset-4 w-full px-1 text-neutral-500">your library</h1>
+        <button onclick={createPlaylist} class="items-center gap-2 bg-neutral-900 hover:border-neutral-800 transition duration-300 ease-in-out flex rounded-full h-9 border-2 border-transparent p-2">
+            <img class="invert-40 size-4" src={Create} alt="createIcon">
         </button>        
         <!-- ----------------------------------------- -->
     </div>
 
-    <div class="flex">
+    <div class="flex my-1 w-full">
         <!-- SEARCH BAR               SORT-BY -->
-        <div class="flex ml-5 mt-2 bg-none box-border">
-            <button class="z-101 hover:cursor-pointer hover:scale-110 hover:invert-40">
-                <img class="z-100 invert-20 size-10 translate-y-0.5 translate-x-0.5 scale-60" src={Search} alt="Search">
+        <div class="flex items-center bg-none box-border bg-neutral-900 flex-1 rounded-2xl">
+            <input bind:this={searchBarRef} bind:value={searchQuery} class="z-99 flex-1 bg-transparent text-white focus:ring-0 border-2 border-transparent rounded-2xl" type=text>
+            
+            <button class="hover:scale-105 min-w-10 hover:bg-neutral-800 transition duration-100 flex-1">
+                <img class="invert-20 size-10 scale-60" src={Search} alt="Search">
             </button>
-            <input bind:this={searchBarRef} oninput={fuzzySearch} class="z-99 ml-10 text-white focus:ring-0 border-2 rounded-l-[1000px] border-transparent hover:border-neutral-900 bg-neutral-900 -translate-x-20 pl-10 w-95" type=text>
             
             <!-- Playlist Filter Sort Button -->
-            <button class="hover:cursor-pointer z-100 hover:bg-neutral-800 -translate-x-38 flex bg-neutral-900 pr-10 rounded-r-[1000px] border-2 border-transparent transition duration-500 ease-in-out">
-                <img class="size-10 invert-20 ml-3 scale-80" src={Filter} alt="Filter Icon">
-                <h1 class="text-neutral-700 text-2xl pl-1 pt-0.5 scale-80">Recent</h1>
+            <button class="hover:bg-neutral-800 min-w-10 rounded-r-2xl flex flex-1 px-1 items-center h-full border-2 border-transparent transition duration-500 ease-in-out">
+                <img class="size-8 invert-20" src={Filter} alt="Filter Icon">
             </button>
         </div>
     </div>
 
     <!-- Playlists Section -->
-    <div bind:this={playlistSection} class="playlistsSection overflow-auto h-[calc(100%-21%)] rounded-b-2xl mt-6">
+    <div bind:this={playlistSection} class="overflow-auto h-[79%] rounded-b-2xl mt-6">
         {#if !isSearching}
-        <h1 class="text-green-700 text-2xl m-4 border-b-2 w-1/2 border-green-900/50 pb-0.5 outline-offset-8">pinned playlists.</h1>
-        <div class="text-neutral-500">
+        <h1 class="text-mahal-maintheme text-2xl border-b-2 w-1/2 border-mahal-maintheme/50 pb-0.5 outline-offset-8 flex items-center">your pins.</h1>
+        <div class="text-neutral-500 my-3">
             {#each PINNED_PLAYLISTS as playlist}
                 <Playlist playlist_details={playlist}/>
             {/each}
         </div>
         
-        <div class="overflow-auto overflow-y-auto mt-4">
+        <div class="overflow-auto overflow-y-auto flex flex-col gap-1">
             {#each REST_PLAYLISTS as playlist}
                 <Playlist playlist_details={playlist}/>
             {/each}
         </div>
 
-        {:else}
+        {:else if SORTED_LIST.length > 0}
             <!-- Fuzzy Search Show Results. -->
-            <div class="overflow-auto overflow-y-auto mt-4">
+            <div class="overflow-auto overflow-y-auto">
                 {#each SORTED_LIST as playlist}
                     <Playlist playlist_details={playlist}/>
                 {/each}
             </div>
+        {:else if SORTED_LIST.length === 0}
+            <h1 class="text-neutral-700 text-center">No Playlist, Song or Podcast found</h1>
+            <h1 class="text-neutral-700 text-center">for '{searchQuery}'</h1>
         {/if}
     </div>
 

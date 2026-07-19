@@ -20,7 +20,7 @@
     const colsMap: Record<number, string> = {
         3: 'grid grid-cols-1 mahalmd:grid-cols-3 justify-start gap-x-3 w-full',
         5: 'grid grid-cols-2 mahalmd:grid-cols-4 mb-[20px] justify-start gap-3 w-full',
-        6: 'grid grid-cols-3 mahalmd:grid-cols-5 mb-[1000px] justify-items-start gap-3 w-full overflow-hidden',
+        6: 'grid grid-cols-2 mahalmd:grid-cols-5 mb-[1000px] justify-items-start gap-3 w-full overflow-hidden',
     }
 
     let middleDoc: HTMLElement;
@@ -82,12 +82,16 @@
 
 </script>
 
-<div bind:this={middleDoc} class="middleElement overflow-auto flex-1 min-w-0 h-200 bg-none rounded-2xl pb-1000">
+<div bind:this={middleDoc} class="middleElement overflow-auto flex-1 min-w-0 h-200 bg-none rounded-2xl pb-1000 px-5 md:px-20">
 {#if UI_CONFIG.MIDDLE_WINDOW_STATE === 'NONE'}
 
+    <div class="h-100 bg-black/50 mt-6 rounded-2xl">
+
+    </div>
+
     <!-- Playlists Section -->
-    {#if PLAYLISTS[0]}
-    <div class="mt-6 ml-20 mr-20 p-4">
+    {#if PLAYLISTS.length > 0}
+    <div class="mt-6 p-4">
         <!-- Playlist Display Options -->
         <div class="flex text-neutral-600">
             <h1 class="text-neutral-600 w-1/2 border-b-2 border-neutral-800 text-3xl mb-6 pb-1.6">playlists.</h1>
@@ -110,7 +114,7 @@
     {/if}
 
     <!-- Recently Played Section -->
-    {#if RECENTLY_PLAYED[0]}
+    {#if RECENTLY_PLAYED.length > 0}
     <div class="mt-2 ml-20 mr-20 p-4">
         <!-- Recently Played Options -->
         <div class="flex text-neutral-600">
@@ -137,16 +141,31 @@
 
 <!-- UI_CONFIG.SELECTED_PLAYLIST_ID -->
 {#if UI_CONFIG.MIDDLE_WINDOW_STATE === "PLAYLIST"}
-    <div class="m-10 justify-items-center">
-        <main class="flex w-[750px] border-b p-5 border-neutral-700">
-                <!-- PLAYLIST IMAGE -->
-                <div class="mr-10 size-[220px] bg-neutral-950">
-                    <img src={placeholder} alt="playlist">
+    <div class="m-10 justify-items-center ">
+        <main class="w-full border-b-2 pb-5 border-neutral-800">
+                <div class="flex gap-1 m-auto">
+                    <!-- PLAYLIST IMAGE -->
+                    <div class="size-80 hidden mahalmd:block shrink-0">
+                        <img src={placeholder} alt="playlist" class="w-full h-full object-fill">
+                    </div>
+
+                    <!-- Information -->
+                    <div class="text-white max-w-full w-full h-full px-10 p-2 py-5 hidden mahalmd:flex mahalmd:flex-col gap-1">
+                        <p class="">Created At.</p>
+                        <h1 class="text-6xl font-bold overflow-x-clip">{_PLAYLIST_WINDOW?.title}</h1>
+                    </div>
                 </div>
 
-                <!-- Information -->
-                <div class="w-[500px] h-[200px] contain-inline-size">
-                    <h1 class="text-white text-6xl mb-5 font-bold overflow-x-clip">{_PLAYLIST_WINDOW?.title}</h1>
+                <div class="flex flex-col w-full gap-5">
+                    <div class="m-auto size-80% mahalmd:hidden">
+                        <img src={placeholder} alt="playlist" class="w-full h-full object-fill">
+                    </div>
+                    
+                    <div class="flex flex-col gap-1 text-white text-center max-w-200 m-auto w-full max-h-90% h-full mahalmd:hidden contain-inline-size">
+                        <h1 class="text-white text-4xl text-center font-bold overflow-x-clip">{_PLAYLIST_WINDOW?.title}</h1>
+                        <p class="">Created At.</p>
+                    </div>
+
                 </div>
         </main>
         <main class="mt-2 w-[750px] h-[35px]">

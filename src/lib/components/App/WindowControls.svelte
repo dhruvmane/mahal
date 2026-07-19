@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { UI_CONFIG } from "$lib/modules/globals.svelte";
+
   // import { getCurrentWindow } from "@tauri-apps/api/window";
   // const appWindow = getCurrentWindow();
 </script>
@@ -10,7 +12,7 @@
     <!-- LEFT: App title or icon -->
   <div data-tauri-drag-region class="flex items-center gap-2 px-4 flex-1">
     <span data-tauri-drag-region class="text-zinc-400 text-xs font-small tracking-widest">
-      Mahal
+      {UI_CONFIG.WINDOW_TITLE}
     </span>
   </div>
 

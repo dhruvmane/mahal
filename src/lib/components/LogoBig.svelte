@@ -7,7 +7,7 @@
 
 <div class="flex space-x-4 ml-4">
     <img class="invert size-32 translate-y-2.5" src={Logo} alt="Logo">
-    <h1 class="hidden mahalmd:flex text-white">Mahal</h1>
+    <h1 class="flex text-white">Mahal</h1>
 </div>
 
 <style>

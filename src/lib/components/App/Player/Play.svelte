@@ -14,7 +14,7 @@
 </script>
 
 <!-- Play Button -->
-<button class="hover:cursor-pointer hover:scale-105 h-15 w-15 p-4 rounded-full bg-green-400 -translate-y-1.5" onclick={changePlaying}>
+<button class="hover:cursor-pointer hover:scale-105 h-15 w-15 p-4 rounded-full bg-mahal-maintheme" onclick={changePlaying}>
     {#if isPlayingDisplay}
         <img class="invert" src={Pause} alt="Pause">
     {/if}
