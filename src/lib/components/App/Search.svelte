@@ -1,38 +1,43 @@
+<!-- SEARCH BAR -->
+
 <script lang=ts>
     import Search from '$lib/assets/icons/search.svg'
-    import { PLAYLISTS } from '../../modules/globals.svelte';
+    import { PLAYLISTS, UI_CONFIG } from '../../modules/globals.svelte';
     import type { PlaylistsInterface, Song, Podcast } from '../../modules/globals.svelte';
     import Fuse from 'fuse.js'    
 
     import Details from './Search/Details.svelte';
 
     // Toggle Results Dropdown.
-    let isSearching = $state(false)
+    let isSearching = $derived(UI_CONFIG.isSearching)
     
     // When Searching, it can show results from both Playlist Titles, Songs Titles, Podcast Titles.
     let searchResultsPlaylists: PlaylistsInterface[] = $state([])
     let searchResultsSongs: Song[] = $state([])
     let searchResultsPodcast: Podcast[] = $state([])
 
-    let searchBarRef: HTMLInputElement
-    let miniSearchBarRef: HTMLInputElement
+    const fusePlaylists = $derived(
+        new Fuse(PLAYLISTS, {keys: ['title', 'subtitle'], threshold: 0.3})
+    )
 
-    function search(event: Event) {
-        // console.log(searchBarRef.value)
-        const query: string = (event.target as HTMLInputElement).value;
+    
+    let searchBarRef: HTMLInputElement;
+    let query: string = $derived(UI_CONFIG.SEARCH_QUERY);
+    
+    export function clearSearch() {
+        query = ""
+    }
+
+    $effect(() => {
         if (query !== "") {
 
             console.log("query:", query);
-            console.log("snapshot:", $state.snapshot(PLAYLISTS));
+            console.log("snapshot:", PLAYLISTS);
 
             // Toggle Dropdown Menu
             isSearching = true
 
-            const fusePlaylists = new Fuse($state.snapshot(PLAYLISTS), { keys: ['title', 'subtitle'], threshold: 0.3 });
-            searchResultsPlaylists = [...fusePlaylists.search(query).map(r => r.item)];
-            console.log("raw fuse results:", searchResultsPlaylists);
-        
-            console.log(searchResultsPlaylists)
+            searchResultsPlaylists = fusePlaylists.search(query).map(r => r.item)
 
         } else {
             isSearching = false
@@ -40,7 +45,7 @@
             searchResultsSongs = []
             searchResultsPodcast = []
         }
-    }
+    })
 
 </script>
 
@@ -50,28 +55,26 @@
             <button class="z-13 hover:cursor-pointer hover:scale-106 translate-x-16">
                 <img class="invert-20 size-8" src={Search} alt="SearchIcon">
             </button>
-            <input bind:this={searchBarRef} oninput={search} class="transition duration-600 ease-in-out flex bg-[#141414] border-0 text-white shadow-taupe-800 focus:ring-0 box-border m-4 p-3 pl-14 w-[400px] rounded-3xl" type="text" placeholder="Search">
+            <input 
+                bind:this={searchBarRef} 
+                bind:value={UI_CONFIG.SEARCH_QUERY} 
+                class="ease-in-out flex bg-[#141414] border-0 text-white shadow-taupe-800 focus:ring-0 box-border m-4 p-3 pl-14 w-[400px] rounded-3xl" 
+                type="text" 
+                placeholder="Search Playlists, Songs, Podcasts & More..">
     </div>
 
-    <!-- Mini Search Bar
-    <div class="flex mahalmd:hidden ml-15 mr-20 w-100">
-        <button class="z-13 hover:cursor-pointer hover:scale-106 translate-x-14">
-            <img class="invert-40 size-8" src={Search} alt="SearchIcon">
-        </button>
-        <input bind:this={miniSearchBarRef} oninput={search} class="transition duration-600 ease-in-out flex bg-[#141414] border-0 text-white shadow-taupe-800 focus:ring-0 box-border m-4 p-3 pl-14 w-[400px] rounded-3xl" type="text" placeholder="Search">
-    </div> -->
 </div> 
 
-{#if isSearching}
+{#if isSearching && query !== ""}
     <div class="z-99999 fixed top-[80px] p-2 translate-x-5 w-[450px] rounded-b-3xl bg-[#141414]">
         
         <!-- Playlists -->
         {#if searchResultsPlaylists[0]}
-        <div>
-            <h1 class="text-neutral-500 text-2xl m-4">Playlists</h1>
-            <div>
+        <div class="flex flex-col p-4">
+            <h1 class="text-neutral-500 text-2xl">Playlists</h1>
+            <div class="flex flex-col gap-1 py-2">
                 {#each searchResultsPlaylists as playlist}
-                    <Details details={playlist}/>
+                    <Details details={playlist} />
                 {/each}
             </div>
         </div>

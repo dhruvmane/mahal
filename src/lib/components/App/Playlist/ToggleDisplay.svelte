@@ -18,21 +18,21 @@
             {#if toggledState === 'ALBUM'}
                 <img class="invert-70 hover:cursor-pointer transition duration-200 ease-in-out" src={Album} alt="pillsort">
             {:else}
-                <img class="invert-20 hover:invert-70 hover:cursor-pointer transition duration-200 ease-in-out" src={Album} alt="pillsort">
+                <img class="invert-20 hover:invert-30 hover:cursor-pointer transition duration-200 ease-in-out" src={Album} alt="pillsort">
             {/if}
         </button>
         <button onclick={() => {setState('CARD'); setDisplayStyle('CARD')}} class="size-9.5  ml-3 -translate-y-1.25 bg-none">
             {#if toggledState === 'CARD'}
                 <img class="invert-70 hover:cursor-pointer transition duration-200 ease-in-out" src={Card} alt="pillsort">
             {:else}
-                <img class="invert-20 hover:invert-70 hover:cursor-pointer transition duration-200 ease-in-out" src={Card} alt="pillsort">
+                <img class="invert-20 hover:invert-30 hover:cursor-pointer transition duration-200 ease-in-out" src={Card} alt="pillsort">
             {/if}
         </button>
         <button onclick={() => {setState('BARS'); setDisplayStyle('BARS')}} class="size-11 ml-1.5 -translate-y-2 bg-none">
             {#if toggledState === 'BARS'}
                 <img class="invert-70 hover:cursor-pointer transition duration-200 ease-in-out" src={Bars} alt="pillsort">
             {:else}
-                <img class="invert-20 hover:invert-70 hover:cursor-pointer transition duration-200 ease-in-out" src={Bars} alt="pillsort">
+                <img class="invert-20 hover:invert-30 hover:cursor-pointer transition duration-200 ease-in-out" src={Bars} alt="pillsort">
             {/if}
         </button>
     </div>

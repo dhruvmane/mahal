@@ -42,10 +42,12 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 
-<div bind:this={page} class="text-white overflow-y-hidden h-screen w-screen">
+<svelte:head>
     <!-- Title of the Web Page -->
     <title>Mahal</title>
+</svelte:head>
 
+<div bind:this={page} class="text-white overflow-y-hidden h-screen w-screen">
     <!-- Front Page of App -->
     
     <!-- Logo -->
@@ -60,8 +62,8 @@
 
     <!-- Buttons -->
     <div class="flex justify-self-center mt-15">
-        <button class="transition-all m-3 p-4 bg-gray-600 hover:bg-gray-400 hover:text-gray-900 font-extrabold min-w-50 hover:cursor-pointer" onclick={navigate('/app')} >GET STARTED</button>
-        <button class="transition-all m-3 p-4 bg-gray-600 hover:bg-gray-400 hover:text-gray-900 font-extrabold min-w-50 hover:cursor-pointer" onclick={navigate('/discover-themes')} >DISCOVER THEMES</button>
+        <button class="transition-all p-4 bg-gray-600 hover:bg-gray-400 hover:text-gray-950 font-extrabold min-w-50 hover:cursor-pointer hover:scale-102" onclick={navigate('/app')} >GET STARTED</button>
+        <button class="transition-all p-4 bg-gray-600 hover:bg-gray-400 hover:text-gray-950 font-extrabold min-w-50 hover:cursor-pointer hover:scale-102" onclick={navigate('/discover-themes')} >DISCOVER THEMES</button>
     </div>
 
     <!-- Links -->

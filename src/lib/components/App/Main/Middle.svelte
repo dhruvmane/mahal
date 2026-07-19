@@ -19,8 +19,8 @@
 
     const colsMap: Record<number, string> = {
         3: 'grid grid-cols-1 mahalmd:grid-cols-3 justify-start gap-x-3 w-full',
-        5: 'grid grid-cols-2 mahalmd:grid-cols-4 justify-start gap-3 w-full',
-        6: 'grid grid-cols-3 mahalmd:grid-cols-5 justify-items-start gap-3 w-full overflow-hidden',
+        5: 'grid grid-cols-2 mahalmd:grid-cols-4 mb-[20px] justify-start gap-3 w-full',
+        6: 'grid grid-cols-3 mahalmd:grid-cols-5 mb-[1000px] justify-items-start gap-3 w-full overflow-hidden',
     }
 
     let middleDoc: HTMLElement;

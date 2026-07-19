@@ -8,7 +8,7 @@
 
 </script>
 
-<div class="lg:flex z-100 bg-none 2xl:bg-black border-b-3 border-neutral-900 mahalmd:border-transparent mahalmd:h-20">
+<div class="lg:flex z-100 bg-none 2xl:bg-black border-b mahalmd:border-transparent mahalmd:h-20">
     
     <title>Mahal</title>
     
