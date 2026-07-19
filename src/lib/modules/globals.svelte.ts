@@ -7,7 +7,8 @@ interface PlaylistsInterface {
         subtitle: string,
         id?: string,
         isPinned?: boolean,
-        songs?: Song[]
+        songs?: Song[],
+        createdAt: number
 }
 
 // SONG STRUCT
@@ -38,10 +39,10 @@ interface App {
 
 // DUMMY DATA
 let PLAYLISTS: PlaylistsInterface[] = $state([
-        {id: crypto.randomUUID(), cover:"", title:"My love", subtitle:"created by Me.", isPinned: true},
-        {id: crypto.randomUUID(), cover:"", title:"Beautiful bollywood Songs", subtitle:"created by Me."},
-        {id: crypto.randomUUID(), cover:"", title:"Podcasts And Recordings", subtitle:"created by Me."},
-        {id: crypto.randomUUID(), cover:"", title:"My Wife's Lullabies.", subtitle:"created by Me."},
+        {createdAt: 1, id: crypto.randomUUID(), cover:"", title:"My love", subtitle:"created by Me.", isPinned: true},
+        {createdAt: 1, id: crypto.randomUUID(), cover:"", title:"Beautiful bollywood Songs", subtitle:"created by Me."},
+        {createdAt: 1, id: crypto.randomUUID(), cover:"", title:"Podcasts And Recordings", subtitle:"created by Me."},
+        {createdAt: 1, id: crypto.randomUUID(), cover:"", title:"My Wife's Lullabies.", subtitle:"created by Me."},
 ])
 
 let RECENTLY_PLAYED: Song[] = $state([])

@@ -1,6 +1,5 @@
 <script lang=ts>
     
-    import { UI_CONFIG } from '../../../modules/globals.svelte.js'
     import { onMount, untrack } from 'svelte'
     import Lenis from 'lenis';
     import Fuse from 'fuse.js';
@@ -118,9 +117,3 @@
 </div>
 
 </div>
-
-<style>
-    .playlistsSection {
-        scrollbar-width: none;
-    }
-</style>

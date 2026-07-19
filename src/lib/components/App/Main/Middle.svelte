@@ -15,6 +15,7 @@
     import { onMount } from 'svelte';
     import ToggleDisplay from '../Playlist/ToggleDisplay.svelte';
     import { PLAYLISTS, RECENTLY_PLAYED, UI_CONFIG, setDisplayStyle, type PlaylistsInterface } from '../../../modules/globals.svelte'
+    import Window from '../Playlist/Window.svelte';
 
 
     const colsMap: Record<number, string> = {
@@ -25,6 +26,8 @@
 
     let middleDoc: HTMLElement;
     let playlistSection: HTMLElement | undefined = $state();
+    let playlistId = $derived(UI_CONFIG.SELECTED_PLAYLIST_ID)
+    
     let playlistSectionColumns: number = $state(6);
     let playlistStringClass = $derived(colsMap[playlistSectionColumns])
     
@@ -69,7 +72,7 @@
         console.log('Changed Recently Played Display Style')
     })
 
-    let _PLAYLIST_WINDOW: PlaylistsInterface | undefined = $state({cover: "", subtitle: "", title: "", id: "", songs: []})
+    let _PLAYLIST_WINDOW: PlaylistsInterface | undefined = $state({createdAt: new Date().getTime(), cover: "", subtitle: "", title: "", id: "", songs: []})
     $effect(() => {
         // Data about the playlist opened in the window.
         _PLAYLIST_WINDOW = PLAYLISTS.find(item => item.id === UI_CONFIG.SELECTED_PLAYLIST_ID)
@@ -141,47 +144,11 @@
 
 <!-- UI_CONFIG.SELECTED_PLAYLIST_ID -->
 {#if UI_CONFIG.MIDDLE_WINDOW_STATE === "PLAYLIST"}
-    <div class="m-10 justify-items-center ">
-        <main class="w-full border-b-2 pb-5 border-neutral-800">
-                <div class="flex gap-1 m-auto">
-                    <!-- PLAYLIST IMAGE -->
-                    <div class="size-80 hidden mahalmd:block shrink-0">
-                        <img src={placeholder} alt="playlist" class="w-full h-full object-fill">
-                    </div>
-
-                    <!-- Information -->
-                    <div class="text-white max-w-full w-full h-full px-10 p-2 py-5 hidden mahalmd:flex mahalmd:flex-col gap-1">
-                        <p class="">Created At.</p>
-                        <h1 class="text-6xl font-bold overflow-x-clip">{_PLAYLIST_WINDOW?.title}</h1>
-                    </div>
-                </div>
-
-                <div class="flex flex-col w-full gap-5">
-                    <div class="m-auto size-80% mahalmd:hidden">
-                        <img src={placeholder} alt="playlist" class="w-full h-full object-fill">
-                    </div>
-                    
-                    <div class="flex flex-col gap-1 text-white text-center max-w-200 m-auto w-full max-h-90% h-full mahalmd:hidden contain-inline-size">
-                        <h1 class="text-white text-4xl text-center font-bold overflow-x-clip">{_PLAYLIST_WINDOW?.title}</h1>
-                        <p class="">Created At.</p>
-                    </div>
-
-                </div>
-        </main>
-        <main class="mt-2 w-[750px] h-[35px]">
-            <!-- Playlist Song Info -->
-            <div class="flex w-[750px] h-[35px]">
-            </div>
-
-            <!-- Playlists -->
-            <div>
-                {#each _PLAYLIST_WINDOW?.songs as Song}
-                    <div class="mt-2.5 flex w-[750px] h-[50px] hover:bg-neutral-800 transition duration-100 bg-neutral-900 rounded"></div>
-                {/each}
-            </div>
-        </main>
-    </div>
+    {#key playlistId}
+        <Window playlist_id={playlistId}/>
+    {/key}
 {/if}
+
 
 </div>
 

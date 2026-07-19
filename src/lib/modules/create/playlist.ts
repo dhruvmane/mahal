@@ -20,7 +20,8 @@ function createPlaylist() {
         title: _title,
         subtitle: _subtitle,
         cover: _cover,
-        isPinned: _isPinned
+        isPinned: _isPinned,
+        createdAt: new Date().getTime()
     }
 
     // Push the Playlist.

@@ -20,9 +20,11 @@
 
 h1 {
     font-family: var(--font-mahal-h1);
+    user-select: none;
 }
 
 p, button, a {
+    user-select: none;
     font-family: var(--font-mahal-p);
 }
 
