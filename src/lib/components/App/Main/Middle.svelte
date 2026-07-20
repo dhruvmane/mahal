@@ -16,6 +16,7 @@
     import ToggleDisplay from '../Playlist/ToggleDisplay.svelte';
     import { PLAYLISTS, RECENTLY_PLAYED, UI_CONFIG, setDisplayStyle, type PlaylistsInterface } from '../../../modules/globals.svelte'
     import Window from '../Playlist/Window.svelte';
+    import Advert from '$lib/components/Extras/Advert.svelte';
 
 
     const colsMap: Record<number, string> = {
@@ -88,7 +89,11 @@
 <div bind:this={middleDoc} class="middleElement overflow-auto flex-1 min-w-0 h-200 bg-none rounded-2xl pb-1000 px-5 md:px-20">
 {#if UI_CONFIG.MIDDLE_WINDOW_STATE === 'NONE'}
 
-    <div class="h-100 bg-black/50 mt-6 rounded-2xl">
+    <div class="mt-4">
+        <Advert />
+    </div>
+
+    <div class="h-100 bg-black/50 mt-2 rounded-2xl">
 
     </div>
 

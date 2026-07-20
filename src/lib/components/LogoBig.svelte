@@ -1,7 +1,7 @@
 <script lang=ts>
     import Logo from '$lib/assets/mahal.svg'
 
-    let { LogoSize, LogoTranslateY } = $props()
+    let { LogoSize = 1, LogoTranslateY = 1 } = $props()
 
 </script>
 

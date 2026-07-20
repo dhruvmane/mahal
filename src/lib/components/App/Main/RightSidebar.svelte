@@ -16,7 +16,7 @@
 <div class="hidden 2xl:flex h-full w-100 bg-black shrink-0">
 
     <!-- GRAY SUB-BOX -->
-    <div class="grid z-100 bg-neutral-950 h-full w-full mx-5 rounded-2xl">
+    <div class="flex flex-col z-100 bg-neutral-950 h-full w-full mx-5 rounded-2xl">
         <!-- CURRENT SONG DETAILS -->
         <div class=" border-2 border-transparent p-3 my-2 rounded-2xl w-full h-10 flex items-center">
             <h1 class="text-neutral-500 text-3xl translate-y-1">queue</h1>
@@ -31,7 +31,9 @@
                     </button>
                 {/if}
             </div>
+
         </div>
+        <h1 class="text-center text-neutral-800 mt-10">No Songs in Queue.</h1>
     </div>
 
 </div>

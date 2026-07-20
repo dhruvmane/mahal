@@ -7,7 +7,7 @@
 
 <div
   data-tauri-drag-region
-  class="flex items-center w-full top-0 bg-zinc-950 border-b border-zinc-800 h-10 z-[10000] select-none"
+  class="flex items-center w-full top-0 bg-zinc-950 border-b border-zinc-800 h-10 z-10000 select-none"
 >
     <!-- LEFT: App title or icon -->
   <div data-tauri-drag-region class="flex items-center gap-2 px-4 flex-1">

@@ -13,8 +13,8 @@
     --color-mahal-maintheme: #FCB55D;
 
     --font-mahal-h1: 'Kindly Rewind';
-    --font-mahal-p: 'VCR OSD MONO';
-
+    --font-mahal-p: 'Space Mono';
+    --font-mahal-handwritten: 'Handflair'
 }
 
 
@@ -23,7 +23,7 @@ h1 {
     user-select: none;
 }
 
-p, button, a {
+p, button, a, input {
     user-select: none;
     font-family: var(--font-mahal-p);
 }
@@ -80,4 +80,24 @@ html, body {
 @font-face {
     font-family: 'VCR OSD MONO';
     src: url('$lib/fonts/VCR_OSD_MONO_1.001.ttf');
+}
+
+@font-face {
+    font-family: 'Brother Signature';
+    src: url('$lib/fonts/Brother Signature.otf');
+}
+
+@font-face {
+    font-family: 'Autography';
+    src: url('$lib/fonts/Autography.otf');
+}
+
+@font-face {
+    font-family: 'Photograph Signature';
+    src: url('$lib/fonts/Photograph Signature.ttf');
+}
+
+@font-face {
+    font-family: 'Handflair';
+    src: url('$lib/fonts/Handflair.ttf');
 }

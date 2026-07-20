@@ -43,24 +43,24 @@
 
 </script>
 
-<div class="grid grid-cols-1 z-10">
+<div class="flex items-center">
     <!-- Search Bar -->
-    <div class="hidden mahalmd:flex justify-self-center">
-            <button class="z-13 hover:cursor-pointer hover:scale-106 translate-x-16">
+    <div class="hidden mahalmd:flex w-[450px] items-center rounded-full bg-[#141414] px-4 py-1 my-4">
+            <button class="hover:cursor-pointer hover:scale-106">
                 <img class="invert-20 size-8" src={Search} alt="SearchIcon">
             </button>
             <input 
                 bind:this={searchBarRef} 
                 bind:value={UI_CONFIG.SEARCH_QUERY} 
-                class="ease-in-out flex bg-[#141414] border-0 text-white shadow-taupe-800 focus:ring-0 box-border m-4 p-3 pl-14 w-[400px] rounded-3xl" 
+                class="ease-in-out flex border-0 text-white shadow-taupe-800 focus:ring-0 box-border bg-[#141414] w-full rounded-3xl" 
                 type="text" 
-                placeholder="Search Playlists, Songs, Podcasts & More..">
+                placeholder="Search Songs, Playlists, Podcasts & More..">
     </div>
 
 </div> 
 
 {#if isSearching && query !== "" && (searchResultsPlaylists.length > 0 || searchResultsSongs.length > 0 || searchResultsSongs.length > 0)}
-    <div class="z-99999 fixed top-[80px] translate-x-5 min-w-[450px] rounded-b-2xl bg-[#141414]">
+    <div class="z-99999 fixed top-[80px] min-w-[450px] rounded-b-2xl bg-[#141414]">
         
         <!-- Playlists -->
         {#if searchResultsPlaylists.length !== 0}

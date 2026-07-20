@@ -63,7 +63,7 @@
     <div class="flex text-white text-2xl w-full h-12 items-center">
         <!-- "YOUR LIBRARY                [+ CREATE] " -->
         <h1 class="undeline underline-offset-4 w-full px-1 text-neutral-500">your library</h1>
-        <button onclick={createPlaylist} class="items-center gap-2 bg-neutral-900 hover:border-neutral-800 transition duration-300 ease-in-out flex rounded-full h-9 border-2 border-transparent p-2">
+        <button onclick={createPlaylist} class="items-center gap-2 bg-neutral-900 hover:border-neutral-800 transition duration-300 ease-in-out flex rounded-full h-9 border-2 border-transparent p-3">
             <img class="invert-40 size-4" src={Create} alt="createIcon">
         </button>        
         <!-- ----------------------------------------- -->
@@ -72,15 +72,15 @@
     <div class="flex my-1 w-full">
         <!-- SEARCH BAR               SORT-BY -->
         <div class="flex items-center bg-none box-border bg-neutral-900 flex-1 rounded-2xl">
-            <input bind:this={searchBarRef} bind:value={searchQuery} class="z-99 flex-1 bg-transparent text-white focus:ring-0 border-2 border-transparent rounded-2xl" type=text>
+            <input bind:this={searchBarRef} bind:value={searchQuery} class="z-99 bg-transparent text-white focus:ring-0 border-2 border-transparent rounded-2xl w-full flex-4" type=text>
             
-            <button class="hover:scale-105 min-w-10 hover:bg-neutral-800 transition duration-100 flex-1">
+            <button class="hover:scale-105 min-w-10 hover:bg-neutral-800 transition duration-100 flex-1 m-auto">
                 <img class="invert-20 size-10 scale-60" src={Search} alt="Search">
             </button>
             
             <!-- Playlist Filter Sort Button -->
-            <button class="hover:bg-neutral-800 min-w-10 rounded-r-2xl flex flex-1 px-1 items-center h-full border-2 border-transparent transition duration-500 ease-in-out">
-                <img class="size-8 invert-20" src={Filter} alt="Filter Icon">
+            <button class="hover:bg-neutral-800 m-auto min-w-10 rounded-r-2xl flex flex-1 px-1 items-center h-full border-2 border-transparent transition duration-500 ease-in-out">
+                <img class="size-8 invert-20 translate-x-1" src={Filter} alt="Filter Icon">
             </button>
         </div>
     </div>
@@ -109,8 +109,8 @@
                 {/each}
             </div>
         {:else if SORTED_LIST.length === 0}
-            <h1 class="text-neutral-700 text-center">No Playlist, Song or Podcast found</h1>
-            <h1 class="text-neutral-700 text-center">for '{searchQuery}'</h1>
+            <h1 class="text-neutral-700 text-center text-[10px]">No Playlist, Song or Podcast found</h1>
+            <h1 class="text-neutral-700 text-center text-[10px]">for '{searchQuery}'</h1>
         {/if}
     </div>
 

@@ -5,6 +5,7 @@
     import User from '$lib/components/User.svelte'
 
     import { setUIState } from '$lib/modules/globals.svelte';
+    import { goto } from '$app/navigation';
 
 </script>
 
@@ -13,13 +14,13 @@
     <title>Mahal</title>
     
     <div class="flex items-center py-2 h-15 mb-2">
-        <button class="hover:text-underline absolute hover:cursor-pointer" onclick={() => setUIState('NONE', '')}>
+        <button class="hover:text-underline absolute hover:cursor-pointer" onclick={() => { setUIState('NONE', ''); goto('/app') }}>
             <div class="top-12 left-12 text-3xl m-2 mx-7">
                 <Logo LogoSize=8 LogoTranslateY=0/>
             </div>
         </button>
 
-        <div class="absolute z-9999 top-12 left-1/2 md:-translate-x-60 md:-translate-y-2.5 scale-75">
+        <div class="flex items-center absolute z-9999 top-12 left-1/2 md:-translate-x-60 md:-translate-y-2.5 scale-75">
             <Search />
         </div>
 
